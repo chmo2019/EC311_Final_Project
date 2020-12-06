@@ -26,7 +26,7 @@ reg [7:0] highscore = 0;
 wire [7:0] highestscore = 0; 
 wire [7:0] currentscore = 0;
 
-compare ct(.highscore(highscore), .currentscore(currentscore), .highestscore(highestscore));
+highscore ct(.highscore(highscore), .currentscore(currentscore), .highestscore(highestscore));
 
 always @(*) begin 
     highscore = highestscore; 
