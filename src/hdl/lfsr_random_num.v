@@ -23,27 +23,33 @@
 module lfsr_random_num(
     input clk,
     input reset,
-    input [3:0] ctrl,
-    input in,
-    output Q
-    );
+    output reg [23:0] randnum //24 bit random number generator
+    ); 
+
+    reg [23:0] n, left_shift;
+    reg [4:0] t1, t2; //tracking shifts
+    wire feed_poly = n[23] ^ n[22] ^ n[21] ^ n[16]; //obtained from Xilinx calculated values 
+    wire shift = n[22:0];
     
-    wire [3:0] i, o;
-    wire n;
+    always @ (*) begin  
+        left_shift = {shift, feed_poly}; 
+        t2 = t1 + 1'b1;
+
+        if (t1 == 24) begin
+            randnum <= n;
+            t1 = 5'b00000;
+        end
+    end
     
-    flip_flop f1(.clk(clk), .reset(reset), .D(i[3]), .Q(o[3]));
-    flip_flop f2(.clk(clk), .reset(reset), .D(i[2]), .Q(o[2])); 
-    flip_flop f3(.clk(clk), .reset(reset), .D(i[1]), .Q(o[1]));
-    flip_flop f4(.clk(clk), .reset(reset), .D(i[0]), .Q(o[0]));
-    
-    mux m1(.ctrl(in), .a(ctrl[3]), .b(n), .out(i[3]));
-    mux m2(.ctrl(in), .a(ctrl[2]), .b(o[3]), .out(i[2]));
-    mux m3(.ctrl(in), .a(ctrl[1]), .b(o[2]), .out(i[1]));
-    mux m4(.ctrl(in), .a(ctrl[0]), .b(o[1]), .out(i[0]));
-    
-    xor G1(n, o[0], o[1]);
-    
-    assign Q = n;    
-    
-    
+    always @ (posedge clk or posedge reset) begin
+        if (!reset) begin
+            n <= left_shift;
+            t1 <= t2;
+        end
+        else begin
+            n <= 24'hF; 
+            t1 <= 5'b00000;
+        end
+    end
+
 endmodule
