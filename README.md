@@ -1,4 +1,4 @@
-# EC311_Final_Project
+# One Player Pong
 
 Contributors: Charles Mo, Patricia Luis, Suzelle Mejia
 
