@@ -36,12 +36,12 @@ module lfsr_random_num(
     flip_flop f3(.clk(clk), .reset(reset), .D(i[1]), .Q(o[1]));
     flip_flop f4(.clk(clk), .reset(reset), .D(i[0]), .Q(o[0]));
     
-    mux m1(.ctrl(in), .a(ctrl[3]), .b(o[2]), .out(i[3]));
-    mux m2(.ctrl(in), .a(ctrl[2]), .b(o[1]), .out(i[2]));
-    mux m3(.ctrl(in), .a(ctrl[1]), .b(o[0]), .out(i[1]));
-    mux m4(.ctrl(in), .a(ctrl[0]), .b(n), .out(i[0]));
+    mux m1(.ctrl(in), .a(ctrl[3]), .b(n), .out(i[3]));
+    mux m2(.ctrl(in), .a(ctrl[2]), .b(o[3]), .out(i[2]));
+    mux m3(.ctrl(in), .a(ctrl[1]), .b(o[2]), .out(i[1]));
+    mux m4(.ctrl(in), .a(ctrl[0]), .b(o[1]), .out(i[0]));
     
-    xor G1(n, o[2], o[3]);
+    xor G1(n, o[0], o[1]);
     
     assign Q = n;    
     
