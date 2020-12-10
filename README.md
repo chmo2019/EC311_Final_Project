@@ -14,7 +14,7 @@ Our final project for EC311 at Boston University is a single player VGA pong gam
 
 # How run our project
 
--Turn the FPGA on and then the VGA will be on. The VGA displays the home screen of the game, to begin playing press the begin button in order to prompt the game to run. As the game is running, use two buttons on the FPGA board to move the paddle left and right and catch the ball. The longer you play the more challenging it gets. As you play your score will be available on the 7-segment display. Once you lose the screen will say GAME OVER, and then press the start button again to return to the home screen that says PONG. 
+Download the zip file and modify the constraints as needed (the constraints used as for the Nexys-A7 100T FPGA board). Open the 'pong2.xpr' file with Vivado 2020.1. Then, either run the synthesis, implementation, then bitstream or program the device with top.bit under 'pong2.runs/impl_1'.  Turn the FPGA on and connect the VGA and you will see the main menu screen. To begin playing press the center button (or button corresponding to your constraints file) in order to prompt the game to run. As the game is running, use two buttons (again, left or right button or corresponding buttons in your constraints file) on the FPGA board to move the paddle left and right and catch the ball. The longer you play the more challenging it gets. As you play your score will be available on the 7-segment display. Once you lose the screen will say GAME OVER, and then press the start button again to return to the home screen that says PONG (note: the game over screen will still be present unless the player presses the left/right button in the game mode i.e. left/right not in the main menu screen).
 
 # Code Overview
 
