@@ -18,12 +18,7 @@ Download the zip file and modify the constraints as needed (the constraints used
 
 # Code Overview
 
--First we needed to get the VGA display actually working (vga640x480.v), and the timing working (clock_divider.v). 
--After that we needed to add the actual game onto the screen as well as graphics to the background (game.v & bg_gen.v). 
--The opening screen also needed to be designed (menu_screen.v & sram.v). 
--Then making the sqaures on the screen and the paddle functional (paddle.v & square.v & start_square.v & debounce.v).
--The start button for the game to begin and exit the homescreen (increment_one.v).
--Pushing the score onto the 7 segment display (dec_bcd.v & num_hex.v & score_to_7seg.v). 
--Then calling the modules to work together and actually implement the game (topmodule.v)
+We Organized all our code into a top module call 'topmodule.v'. The top module manages the game modes (using 'increment_one.v' and a case block) and takes user input as well as feeding visual output to the user. The visual handling tasks are done by 'bg_gen.v', partially by the 'game.v', 'menu_screen.v', as well as 'score_to_7seg.v'. While the first three of those modules have VGA components, the 'score_to_7seg.v' module and 'clock_divider.v' module are responsible for converting raw numbers at appropriate timings into appropriate digits to be displayed on the 7-segment display in decimal format. Within that module, the 'dec_bcd' and 'num_hex.v' modules decode counters, fed by 'game.v', into readable, 7-segment digits on the FPGA. For the VGA displaying modules, the 'vga640x480' acts as the primary driver to create appropriate synchronization signals to animate moving pixels properly. These synchronization signal are then fed into the different game objects ('square.v', 'start_square.v', 'paddle.v') as well as the memory reading modules ('sram.v') in order to generate displayable pixels on the VGA display.
+
 
 
