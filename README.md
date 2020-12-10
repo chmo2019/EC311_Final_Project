@@ -6,7 +6,7 @@ Inspired by Will Green's Blog. Check out his blog at: https://projectf.io/.
 
 # Video Demonstration
 
-If you'd like to check out our game in action, here's the link: 
+If you'd like to check out our game, here's a link to our demonstration: 
 
 # Project Overview
 
